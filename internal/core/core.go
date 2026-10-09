@@ -76,7 +76,7 @@ var mimeExt = map[string]string{
 func NormalizeExt(e string) string {
 	e = strings.ToLower(strings.TrimPrefix(strings.TrimSpace(e), "."))
 	if e == "jpeg" || e == "jpe" {
-		return "jpeg"
+		return "jpg"
 	}
 	return e
 }
@@ -90,7 +90,6 @@ func ExtFromURL(raw string) string {
 	if err != nil {
 		return ""
 	}
-
 	e := NormalizeExt(path.Ext(u.Path))
 	if _, ok := extKinds[e]; ok {
 		return e
