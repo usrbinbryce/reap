@@ -1,6 +1,8 @@
 package core
 
 import (
+	"errors"
+	"fmt"
 	"net/http"
 	"net/url"
 	"path"
@@ -59,6 +61,28 @@ type Media struct {
 	// whose type the client allowed
 	Alternates []Media
 }
+
+var (
+	ErrUnsupported = errors.New("unsupported")
+	ErrGone        = errors.New("gone")
+	ErrNeedsSetup  = errors.New("needs setup")
+)
+
+type taggedErr struct {
+	kind error
+	msg  string
+}
+
+func (e *taggedErr) Error() string { return e.msg }
+func (e *taggedErr) Unwrap() error { return e.kind }
+
+func Tag(kind error, format string, args ...any) error {
+	return &taggedErr{kind: kind, msg: fmt.Sprintf(format, args...)}
+}
+
+func Unsupported(format string, args ...any) error { return Tag(ErrUnsupported, format, args...) }
+func Gone(format string, args ...any) error        { return Tag(ErrGone, format, args...) }
+func NeedsSetup(format string, args ...any) error  { return Tag(ErrNeedsSetup, format, args...) }
 
 var extKinds = map[string]Kind{
 	"jpg": KindImage, "png": KindImage, "webp": KindImage, "avif": KindImage, "heic": KindImage, "bmp": KindImage,
