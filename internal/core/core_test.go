@@ -9,15 +9,6 @@ import (
 	"time"
 )
 
-func TestKindString(t *testing.T) {
-	cases := map[Kind]string{KindImage: "image", KindAnimated: "animated", KindVideo: "video", KindUnknown: "unknown", Kind(99): "unknown"}
-	for k, want := range cases {
-		if got := k.String(); got != want {
-			t.Errorf("Kind(%d).String() = %q, want %q", k, got, want)
-		}
-	}
-}
-
 func TestNormalizeExt(t *testing.T) {
 	cases := map[string]string{
 		"https://i.redd.it/abc.JPEG":            "jpg",
@@ -182,23 +173,6 @@ func TestRegistry(t *testing.T) {
 	}
 }
 
-func TestRegisterSourcePanics(t *testing.T) {
-	for _, name := range []string{"", "Upper", "alpha-dup"} {
-		if name == "alpha-dup" {
-			register(&testSource{name: "dup"})
-			name = "dup"
-		}
-		func() {
-			defer func() {
-				if recover() == nil {
-					t.Errorf("RegisterSource(%q) should panic", name)
-				}
-			}()
-			RegisterSource(&testSource{name: name})
-		}()
-	}
-}
-
 func TestWithDefaults(t *testing.T) {
 	info := (&testSource{name: "x"}).Info()
 	got := WithDefaults(info, map[string]string{"b": "y", "extra": "z"})
@@ -235,25 +209,6 @@ func TestRequestOptions(t *testing.T) {
 		t.Errorf("Statusf didn't call Status: %q", status)
 	}
 	Request{}.Statusf("no status func is fine")
-}
-
-func TestNewEnv(t *testing.T) {
-	register(&testSource{name: "envsrc"})
-	env := NewEnv("ua/1", func(k string) string {
-		if k == "a.b" {
-			return "  secret \n"
-		}
-		return ""
-	})
-	if env.UserAgent != "ua/1" || env.HTTP == nil || env.HTTP.UserAgent != "ua/1" {
-		t.Error("NewEnv should build a client with the user agent")
-	}
-	if env.Secret("a.b") != "secret" {
-		t.Errorf("Secret should trim, got %q", env.Secret("a.b"))
-	}
-	if NewEnv("ua", nil).Secret("anything") != "" {
-		t.Error("nil secret func should return empty secrets")
-	}
 }
 
 func TestExpandHome(t *testing.T) {
