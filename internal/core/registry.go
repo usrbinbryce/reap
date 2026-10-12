@@ -77,7 +77,7 @@ func (r Request) OptInt(key string, def int) int {
 }
 
 // StatusF reports what a source is doing e.g. "Reading new, page 3"
-func (r Request) StatusF(format string, args ...any) {
+func (r Request) Statusf(format string, args ...any) {
 	if r.Status != nil {
 		r.Status(format, args...)
 	}
@@ -119,7 +119,6 @@ func RegisterSource(s Source) {
 	if name == "" || name != strings.ToLower(name) {
 		panic("core: source names must be non-empty and lowercase: " + name)
 	}
-
 	if _, dup := sources[name]; dup {
 		panic("core: source registered twice: " + name)
 	}
