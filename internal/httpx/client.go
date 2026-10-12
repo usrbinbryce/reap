@@ -224,10 +224,10 @@ func retryAfter(h http.Header) time.Duration {
 	if v == "" {
 		return 0
 	}
-	if s, err := strconv.Atoi(v); err != nil {
+	if s, err := strconv.Atoi(v); err == nil {
 		return time.Duration(s) * time.Second
 	}
-	if t, err := http.ParseTime(v); err != nil {
+	if t, err := http.ParseTime(v); err == nil {
 		return time.Until(t)
 	}
 	return 0
