@@ -84,6 +84,8 @@ func Unsupported(format string, args ...any) error { return Tag(ErrUnsupported, 
 func Gone(format string, args ...any) error        { return Tag(ErrGone, format, args...) }
 func NeedsSetup(format string, args ...any) error  { return Tag(ErrNeedsSetup, format, args...) }
 
+var FileTypes = []string{"jpg", "png", "webp", "gif", "mp4", "avif"}
+
 var extKinds = map[string]Kind{
 	"jpg": KindImage, "png": KindImage, "webp": KindImage, "avif": KindImage, "heic": KindImage, "bmp": KindImage,
 	"gif": KindAnimated, "mp4": KindAnimated, "webm": KindAnimated,
