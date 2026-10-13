@@ -65,7 +65,7 @@ type preview struct {
 	} `json:"reddit_video_preview"`
 }
 
-var mediaDomains = []string{"imgur.com", "gfycat.com", "giphy.com", "i.redd.it"}
+var mediaDomains = []string{"imgur.com", "regifs.com", "gfycat.com", "giphy.com", "i.redd.it"}
 
 func extract(p *post, previews bool) []core.Item {
 	src := p
