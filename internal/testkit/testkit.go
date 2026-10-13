@@ -22,6 +22,7 @@ import (
 	"time"
 
 	"github.com/usrbinbryce/reap/internal/core"
+	"github.com/usrbinbryce/reap/internal/engine"
 	"github.com/usrbinbryce/reap/internal/httpx"
 )
 
@@ -265,6 +266,45 @@ func Env(secrets map[string]string) *core.Env {
 func Item(id, rawURL string) core.Item {
 	return core.Item{Source: "fake", Collection: "box", ID: id, URL: rawURL, Title: "Title " + id,
 		Author: "someone", Created: time.Date(2024, 5, 31, 12, 0, 0, 0, time.UTC), Score: 7}
+}
+
+func Job(dir string) engine.Job {
+	return engine.Job{
+		Source: "fake", Target: "box", OutDir: dir,
+		Types: []string{"jpg", "png", "gif", "webp", "mp4"}, Workers: 2, Dedupe: engine.DedupeFlag,
+	}
+}
+
+// Drain reads every event from a run and returns them with the final stats.
+func Drain(t testing.TB, r *engine.Run) ([]engine.Event, engine.Stats) {
+	t.Helper()
+	var evs []engine.Event
+	timeout := time.After(20 * time.Second)
+	for {
+		select {
+		case ev, ok := <-r.Events:
+			if !ok {
+				if len(evs) == 0 || evs[len(evs)-1].Kind != engine.EvDone {
+					t.Fatalf("events closed without EvDone")
+				}
+				return evs, evs[len(evs)-1].Stats
+			}
+			evs = append(evs, ev)
+		case <-timeout:
+			t.Fatalf("run did not finish; %d events so far", len(evs))
+		}
+	}
+}
+
+// Count returns how many events have kind k.
+func Count(evs []engine.Event, k engine.EventKind) int {
+	n := 0
+	for _, e := range evs {
+		if e.Kind == k {
+			n++
+		}
+	}
+	return n
 }
 
 func DeadURL() string {
