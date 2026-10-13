@@ -1,0 +1,177 @@
+{
+  "image": {
+    "id": "img1",
+    "title": "Sunset",
+    "author": "alice",
+    "subreddit": "earthporn",
+    "permalink": "/r/earthporn/comments/img1/sunset/",
+    "url": "https://i.redd.it/aaa.jpg",
+    "url_overridden_by_dest": "https://i.redd.it/aaa.jpg",
+    "domain": "i.redd.it",
+    "created_utc": 1717113600,
+    "over_18": false,
+    "score": 512,
+    "post_hint": "image",
+    "link_flair_text": "OC",
+    "preview": {
+      "images": [
+        { "source": { "url": "https://preview.redd.it/aaa.jpg?s=sig" } }
+      ]
+    }
+  },
+  "gallery": {
+    "id": "gal1",
+    "title": "Three shots",
+    "author": "bob",
+    "subreddit": "pics",
+    "permalink": "/r/pics/comments/gal1/",
+    "url": "https://www.reddit.com/gallery/gal1",
+    "domain": "reddit.com",
+    "created_utc": 1717113600,
+    "over_18": true,
+    "score": 10,
+    "gallery_data": {
+      "items": [
+        { "media_id": "m1" },
+        { "media_id": "m2" },
+        { "media_id": "m3" },
+        { "media_id": "m4" },
+        { "media_id": "m5" },
+        { "media_id": "m6" },
+        { "media_id": "absent" }
+      ]
+    },
+    "media_metadata": {
+      "m1": {
+        "status": "valid",
+        "e": "Image",
+        "m": "image/png",
+        "s": { "u": "https://preview.redd.it/m1.png?s=x" }
+      },
+      "m2": {
+        "status": "valid",
+        "e": "AnimatedImage",
+        "m": "image/gif",
+        "s": {
+          "gif": "https://i.redd.it/m2.gif",
+          "mp4": "https://preview.redd.it/m2.gif?format=mp4"
+        }
+      },
+      "m3": { "status": "failed", "e": "Image", "m": "image/jpg" },
+      "m4": {
+        "status": "valid",
+        "e": "Image",
+        "m": "",
+        "s": { "u": "https://preview.redd.it/m4.jpeg?s=y" }
+      },
+      "m5": {
+        "status": "valid",
+        "e": "AnimatedImage",
+        "s": { "mp4": "https://preview.redd.it/m5.gif?format=mp4" }
+      },
+      "m6": { "status": "valid", "e": "RedditVideo", "s": {} }
+    }
+  },
+  "crosspost": {
+    "id": "xp1",
+    "title": "Reposted",
+    "author": "carol",
+    "subreddit": "copycats",
+    "permalink": "/r/copycats/comments/xp1/",
+    "url": "/r/orig/comments/orig1/",
+    "domain": "self.orig",
+    "created_utc": 1717200000,
+    "score": 3,
+    "crosspost_parent_list": [
+      {
+        "id": "orig1",
+        "subreddit": "orig",
+        "url": "https://i.imgur.com/AbC1234.jpg",
+        "url_overridden_by_dest": "https://i.imgur.com/AbC1234.jpg",
+        "domain": "i.imgur.com"
+      }
+    ]
+  },
+  "video": {
+    "id": "vid1",
+    "title": "Clip",
+    "subreddit": "videos",
+    "url": "https://v.redd.it/xyz",
+    "domain": "v.redd.it",
+    "is_video": true
+  },
+  "self": {
+    "id": "self1",
+    "title": "Just text",
+    "subreddit": "askreddit",
+    "url": "https://www.reddit.com/r/askreddit/comments/self1/",
+    "is_self": true
+  },
+  "selfmedia": {
+    "id": "selfm",
+    "title": "Text with pictures",
+    "subreddit": "art",
+    "is_self": true,
+    "url": "https://www.reddit.com/r/art/comments/selfm/",
+    "media_metadata": {
+      "zz": {
+        "status": "valid",
+        "e": "Image",
+        "m": "image/webp",
+        "s": { "u": "https://preview.redd.it/zz.webp" }
+      },
+      "aa": {
+        "status": "valid",
+        "e": "Image",
+        "m": "image/jpg",
+        "s": { "u": "https://preview.redd.it/aa.jpg" }
+      }
+    }
+  },
+  "redgifs": {
+    "id": "rg1",
+    "title": "Loop",
+    "subreddit": "gifs",
+    "url": "https://www.redgifs.com/watch/happyloop",
+    "domain": "redgifs.com",
+    "post_hint": "rich:video",
+    "over_18": true,
+    "preview": {
+      "reddit_video_preview": {
+        "fallback_url": "https://v.redd.it/rg1/DASH_480.mp4"
+      },
+      "images": [
+        {
+          "source": { "url": "https://external-preview.redd.it/poster.jpg" },
+          "variants": {
+            "gif": { "source": { "url": "https://preview.redd.it/rg1.gif" } },
+            "mp4": { "source": { "url": "https://preview.redd.it/rg1.mp4" } }
+          }
+        }
+      ]
+    }
+  },
+  "news": {
+    "id": "news1",
+    "title": "Article",
+    "subreddit": "news",
+    "url": "https://example.com/story",
+    "domain": "example.com",
+    "post_hint": "link",
+    "preview": {
+      "images": [
+        { "source": { "url": "https://external-preview.redd.it/thumb.jpg" } }
+      ]
+    }
+  },
+  "imgurnopreview": {
+    "id": "imgnp",
+    "subreddit": "pics",
+    "url": "https://imgur.com/AbC1234",
+    "domain": "imgur.com"
+  },
+  "nourl": {
+    "id": "nourl1",
+    "subreddit": "pics"
+  }
+}
