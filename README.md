@@ -17,10 +17,10 @@ It's really fast. The implementation of Goroutines allowed me to source ~10,000 
 Memory usage is negligible, at around 400MB of RAM when running 10 workers concurrently.
 
 ## Running
-``sh
+```sh
 git clone https://github.com/usrbinbryce/reap.git
 cd reap
 go mod tidy
 go build ./cmd/reap
 ./reap # or on windows, ./reap.exe
-``
+```
