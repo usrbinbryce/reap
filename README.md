@@ -13,3 +13,14 @@ Given that I'm not maintaining this, feel free to make a PR, fork, etc. and I wi
 - CLI: commandline interface for Reap.
 
 It's really fast. The implementation of Goroutines allowed me to source ~10,000 unique images from Reddit in around 5 minutes @ 9000 Mbps internet speeds. Speeds should still be smooth and quick at slower internet speeds as well.
+
+Memory usage is negligible, at around 400MB of RAM when running 10 workers concurrently.
+
+## Running
+``sh
+git clone https://github.com/usrbinbryce/reap.git
+cd reap
+go mod tidy
+go build ./cmd/reap
+./reap # or on windows, ./reap.exe
+``
